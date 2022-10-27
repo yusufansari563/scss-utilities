@@ -1,0 +1,55 @@
+$utilities: (
+  'padding': (
+    "prefix": "p",
+    "values": (
+      "0": 0rem,
+      "25": 0.25rem,
+      "50": 0.5rem,
+      "75": 0.75rem,
+      "100": 1rem,
+    ),
+  ),
+  'padding-left': (
+    "prefix": "pl",
+    "values": (
+      "0": 0rem,
+      "25": 0.25rem,
+      "50": 0.5rem,
+      "75": 0.75rem,
+      "100": 1rem,
+    ),
+  ),
+  'padding-right': (
+    "prefix": "pr",
+    "values": (
+      "0": 0rem,
+      "25": 0.25rem,
+      "50": 0.5rem,
+      "75": 0.75rem,
+      "100": 1rem,
+    ),
+  ),
+);
+
+@each $property, $map in $utilities {
+  $prefix: map-get(
+    $map: $map,
+    $key: 'prefix',
+  );
+  $value: map-get(
+    $map: $map,
+    $key: 'values',
+  );
+
+  @each $k, $v in $value{
+    @if $k == "default" {
+        .#{$prefix}{
+            #{$property}: $v;
+        }
+    }@else{
+        .#{$prefix}-#{$k}{
+            #{$property}: $v;
+        }
+    }
+  }
+}
